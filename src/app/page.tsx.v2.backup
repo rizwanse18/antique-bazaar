@@ -1,0 +1,353 @@
+import Link from "next/link";
+import { Search, ArrowRight, Gavel, Shield, Truck, BadgeCheck, Star, TrendingUp, MapPin, Sparkles, Clock, Users, ChevronRight } from "lucide-react";
+import { prisma } from "@/lib/prisma";
+import { formatPrice } from "@/lib/utils";
+import AuctionCountdown from "@/components/listing/AuctionCountdown";
+import WishlistButton from "@/components/listing/WishlistButton";
+
+const CATEGORIES = [
+  { name: "Furniture", slug: "furniture", emoji: "🪑" },
+  { name: "Paintings", slug: "paintings", emoji: "🎨" },
+  { name: "Coins", slug: "coins", emoji: "🪙" },
+  { name: "Jewelry", slug: "jewelry", emoji: "💎" },
+  { name: "Ceramics", slug: "ceramics", emoji: "🏺" },
+  { name: "Watches", slug: "watches", emoji: "⌚" },
+  { name: "Textiles", slug: "textiles", emoji: "🧵" },
+  { name: "Sculpture", slug: "sculpture", emoji: "🗿" },
+];
+
+async function getData() {
+  const featured = await prisma.listing.findMany({
+    where: { status: "APPROVED" },
+    orderBy: { createdAt: "desc" },
+    take: 12,
+    include: { seller: { select: { name: true } } },
+  });
+  const auctions = await prisma.listing.findMany({
+    where: { status: "APPROVED", saleType: "AUCTION", auctionEnd: { gt: new Date() } },
+    take: 4,
+    orderBy: { auctionEnd: "asc" },
+    include: { bids: { orderBy: { amount: "desc" }, take: 1 } },
+  });
+  return { featured, auctions };
+}
+
+export default async function Home() {
+  const { featured, auctions } = await getData();
+
+  return (
+    <div className="bg-gray-50">
+      {/* MOBILE-FIRST TOP BAR */}
+      <div className="bg-antique-950 text-cream text-[11px] sm:text-xs py-2">
+        <div className="container mx-auto px-3 sm:px-4 flex justify-between items-center">
+          <div className="flex items-center gap-1.5">
+            <MapPin className="w-3 h-3 shrink-0" />
+            <span>Peshawar, PK</span>
+          </div>
+          <div className="flex gap-3 sm:gap-4">
+            <Link href="/help" className="hover:text-gold-400 transition">Help</Link>
+            <Link href="/sell" className="hover:text-gold-400 transition">Sell</Link>
+          </div>
+        </div>
+      </div>
+
+      {/* SEARCH HEADER — TOUCH OPTIMIZED */}
+      <div className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
+          <div className="flex items-center gap-2 sm:gap-6">
+            <Link href="/" className="flex items-center gap-2 shrink-0">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-antique-700 to-gold-500 rounded-lg flex items-center justify-center">
+                <Gavel className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              </div>
+              <span className="font-serif font-bold text-lg sm:text-xl text-antique-900 hidden sm:block">Antique Bazaar</span>
+            </Link>
+
+            <div className="flex-1 max-w-3xl">
+              <form action="/listings" className="flex">
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+                  <input name="q" type="text" placeholder="Search antiques..." className="w-full pl-9 sm:pl-10 pr-3 py-2.5 sm:py-3 border-2 border-antique-600 border-r-0 rounded-l-lg focus:outline-none text-sm" />
+                </div>
+                <button type="submit" className="bg-antique-700 text-white px-4 sm:px-8 rounded-r-lg font-semibold hover:bg-antique-800 transition text-sm touch-manipulation">Search</button>
+              </form>
+              <div className="hidden sm:flex gap-3 mt-2 text-xs text-gray-500">
+                <span className="font-semibold">Popular:</span>
+                {["Mughal", "Victorian", "Coins", "Watches", "Rugs"].map(t => (
+                  <Link key={t} href={`/listings?q=${t}`} className="hover:text-antique-700">{t}</Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="hidden lg:flex items-center gap-4 text-sm">
+              <Link href="/login" className="font-semibold text-antique-700 hover:text-antique-900">Sign In</Link>
+              <Link href="/signup" className="btn-primary text-sm py-2 px-4">Join Free</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* MOBILE HERO — NEW DESIGN */}
+      <div className="sm:hidden bg-gradient-to-br from-antique-900 via-antique-800 to-antique-700 text-white">
+        <div className="px-4 py-8">
+          <span className="inline-block bg-gold-500 text-antique-950 text-[10px] font-bold px-2.5 py-1 rounded mb-3 uppercase tracking-wide">✨ Verified</span>
+          <h1 className="font-serif text-3xl font-bold mb-3 leading-tight">Discover <span className="text-gold-400">Timeless</span> Treasures</h1>
+          <p className="text-sm text-antique-200 mb-5 leading-relaxed">Buy & sell authentic antiques with escrow protection.</p>
+          <Link href="/listings" className="inline-flex items-center justify-center gap-2 bg-gold-500 text-antique-950 px-5 py-3 rounded-lg font-bold text-sm w-full touch-manipulation active:scale-95 transition">
+            Browse Collection <ArrowRight className="w-4 h-4" />
+          </Link>
+          <div className="grid grid-cols-3 gap-2 mt-6 text-center">
+            <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm">
+              <p className="text-gold-400 font-bold text-lg">{featured.length}+</p>
+              <p className="text-[10px] text-antique-200">Items</p>
+            </div>
+            <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm">
+              <p className="text-gold-400 font-bold text-lg">12K</p>
+              <p className="text-[10px] text-antique-200">Sellers</p>
+            </div>
+            <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm">
+              <p className="text-gold-400 font-bold text-lg">98%</p>
+              <p className="text-[10px] text-antique-200">Happy</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* MOBILE CATEGORIES — HORIZONTAL SCROLL */}
+      <div className="sm:hidden bg-white py-4">
+        <div className="px-4 flex items-center justify-between mb-3">
+          <h2 className="font-bold text-sm text-antique-900">Categories</h2>
+          <Link href="/categories" className="text-xs text-antique-700 font-semibold flex items-center gap-0.5">All <ChevronRight className="w-3 h-3" /></Link>
+        </div>
+        <div className="overflow-x-auto scrollbar-hide">
+          <div className="flex gap-3 px-4 pb-2" style={{scrollbarWidth: "none"}}>
+            {CATEGORIES.map(cat => (
+              <Link key={cat.slug} href={`/listings?category=${cat.slug}`} className="flex flex-col items-center shrink-0 w-16 touch-manipulation active:scale-95 transition">
+                <div className="w-14 h-14 bg-antique-50 rounded-full flex items-center justify-center text-2xl border-2 border-antique-100">
+                  {cat.emoji}
+                </div>
+                <span className="text-[10px] text-gray-700 mt-1 text-center leading-tight">{cat.name}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* DESKTOP 3-COLUMN LAYOUT */}
+      <div className="hidden sm:block container mx-auto px-4 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* LEFT: Categories */}
+          <aside className="hidden lg:block lg:col-span-3 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden h-fit">
+            <div className="bg-antique-700 text-white px-4 py-3 font-bold text-sm">All Categories</div>
+            <ul className="divide-y divide-gray-100">
+              {CATEGORIES.map(cat => (
+                <li key={cat.slug}>
+                  <Link href={`/listings?category=${cat.slug}`} className="flex items-center justify-between px-4 py-3 hover:bg-antique-50 transition text-sm">
+                    <span className="flex items-center gap-2"><span className="text-lg">{cat.emoji}</span>{cat.name}</span>
+                    <ArrowRight className="w-4 h-4 text-gray-400" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="p-4 bg-antique-50">
+              <Link href="/listings" className="text-antique-700 font-semibold text-sm hover:underline">View All →</Link>
+            </div>
+          </aside>
+
+          {/* CENTER */}
+          <div className="lg:col-span-6 space-y-6">
+            <div className="relative bg-gradient-to-br from-antique-900 via-antique-800 to-antique-700 rounded-lg overflow-hidden h-72 flex items-center">
+              <div className="absolute inset-0 opacity-20" style={{backgroundImage: "url('https://images.unsplash.com/photo-1523528283115-9bf9b1699245?w=1200')", backgroundSize: "cover", backgroundPosition: "center"}}></div>
+              <div className="relative z-10 px-8">
+                <span className="inline-block bg-gold-500 text-antique-950 text-xs font-bold px-3 py-1 rounded mb-3">✨ VERIFIED ANTIQUES</span>
+                <h1 className="font-serif text-4xl font-bold text-white mb-3">Discover <span className="text-gold-400">Timeless</span> Treasures</h1>
+                <p className="text-antique-200 mb-5 max-w-md">Buy & sell authentic antiques with confidence. Escrow protected.</p>
+                <Link href="/listings" className="inline-flex items-center gap-2 bg-gold-500 text-antique-950 px-6 py-3 rounded-lg font-bold hover:bg-gold-400 transition">Shop Now <ArrowRight className="w-5 h-5" /></Link>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="font-bold text-lg">Featured Antiques</h2>
+                <Link href="/listings" className="text-sm text-antique-700 hover:underline flex items-center gap-1">View All <ArrowRight className="w-4 h-4" /></Link>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {featured.slice(0, 6).map(l => {
+                  const imgs = JSON.parse(l.images);
+                  return (
+                    <Link key={l.id} href={`/listings/${l.id}`} className="group border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition">
+                      <div className="relative h-36 overflow-hidden">
+                        <img src={imgs[0]} alt={l.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                        <div className="absolute top-2 right-2"><WishlistButton listingId={l.id} size="sm" /></div>
+                      </div>
+                      <div className="p-3">
+                        <h3 className="text-sm font-semibold line-clamp-1">{l.title}</h3>
+                        <p className="text-xs text-gray-500 mt-0.5">{l.seller.name}</p>
+                        <p className="font-bold text-antique-900 mt-1">{l.price ? formatPrice(l.price) : "Auction"}</p>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT */}
+          <div className="lg:col-span-3 space-y-6">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+              <div className="bg-red-600 text-white px-4 py-3 font-bold text-sm flex items-center gap-2">
+                <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span> LIVE AUCTIONS
+              </div>
+              <div className="divide-y divide-gray-100">
+                {auctions.length === 0 ? (
+                  <p className="p-4 text-sm text-gray-500">No live auctions</p>
+                ) : auctions.map(a => {
+                  const imgs = JSON.parse(a.images);
+                  const currentBid = a.bids[0]?.amount || a.startingBid || 0;
+                  return (
+                    <Link key={a.id} href={`/listings/${a.id}`} className="flex gap-3 p-3 hover:bg-antique-50 transition">
+                      <img src={imgs[0]} alt={a.title} className="w-16 h-16 object-cover rounded" />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold line-clamp-1">{a.title}</p>
+                        <p className="text-xs text-red-600 font-bold mt-1">{formatPrice(currentBid)}</p>
+                        <AuctionCountdown endTime={a.auctionEnd!} compact />
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+              <Link href="/auctions" className="block text-center py-3 text-sm text-antique-700 font-semibold hover:bg-antique-50">View All Auctions →</Link>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 space-y-3">
+              {[
+                { icon: BadgeCheck, title: "Expert Verified", desc: "Every antique authenticated" },
+                { icon: Shield, title: "Escrow Protected", desc: "Money held until delivery" },
+                { icon: Truck, title: "Insured Shipping", desc: "Worldwide secure delivery" },
+              ].map((b, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-antique-100 rounded-lg flex items-center justify-center shrink-0">
+                    <b.icon className="w-4 h-4 text-antique-700" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold">{b.title}</p>
+                    <p className="text-xs text-gray-500">{b.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* MOBILE FEATURED — NEW DESIGN */}
+      <div className="sm:hidden bg-white mt-4 py-4">
+        <div className="px-4 flex items-center justify-between mb-3">
+          <h2 className="font-bold text-base text-antique-900 flex items-center gap-1.5">
+            <Sparkles className="w-4 h-4 text-gold-500" /> Featured
+          </h2>
+          <Link href="/listings" className="text-xs text-antique-700 font-semibold flex items-center gap-0.5">View All <ChevronRight className="w-3 h-3" /></Link>
+        </div>
+        <div className="grid grid-cols-2 gap-3 px-4">
+          {featured.slice(0, 4).map(l => {
+            const imgs = JSON.parse(l.images);
+            return (
+              <Link key={l.id} href={`/listings/${l.id}`} className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm active:scale-[0.98] transition">
+                <div className="relative h-32 overflow-hidden">
+                  <img src={imgs[0]} alt={l.title} className="w-full h-full object-cover" />
+                  <div className="absolute top-1.5 right-1.5"><WishlistButton listingId={l.id} size="sm" /></div>
+                </div>
+                <div className="p-2.5">
+                  <h3 className="text-xs font-semibold line-clamp-2 leading-tight h-8">{l.title}</h3>
+                  <p className="text-[10px] text-gray-500 mt-1">{l.seller.name}</p>
+                  <p className="font-bold text-sm text-antique-900 mt-1">{l.price ? formatPrice(l.price) : "Auction"}</p>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* MOBILE AUCTIONS STRIP */}
+      {auctions.length > 0 && (
+        <div className="sm:hidden bg-gradient-to-br from-red-600 to-red-700 mt-4 py-4">
+          <div className="px-4 flex items-center justify-between mb-3">
+            <h2 className="font-bold text-base text-white flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span> Live Auctions
+            </h2>
+            <Link href="/auctions" className="text-xs text-white font-semibold flex items-center gap-0.5">View All <ChevronRight className="w-3 h-3" /></Link>
+          </div>
+          <div className="flex gap-3 px-4 overflow-x-auto pb-2" style={{scrollbarWidth: "none"}}>
+            {auctions.map(a => {
+              const imgs = JSON.parse(a.images);
+              const currentBid = a.bids[0]?.amount || a.startingBid || 0;
+              return (
+                <Link key={a.id} href={`/listings/${a.id}`} className="bg-white rounded-lg overflow-hidden shrink-0 w-40 shadow-md active:scale-95 transition">
+                  <img src={imgs[0]} alt={a.title} className="w-full h-24 object-cover" />
+                  <div className="p-2">
+                    <p className="text-[11px] font-semibold line-clamp-1">{a.title}</p>
+                    <p className="text-xs text-red-600 font-bold mt-0.5">{formatPrice(currentBid)}</p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* MOBILE TRUST BADGES */}
+      <div className="sm:hidden bg-white mt-4 py-4">
+        <div className="grid grid-cols-3 gap-2 px-4">
+          {[
+            { icon: BadgeCheck, label: "Verified" },
+            { icon: Shield, label: "Escrow" },
+            { icon: Truck, label: "Insured" },
+          ].map((b, i) => (
+            <div key={i} className="flex flex-col items-center gap-1 py-2">
+              <div className="w-10 h-10 bg-antique-100 rounded-full flex items-center justify-center">
+                <b.icon className="w-5 h-5 text-antique-700" />
+              </div>
+              <span className="text-[10px] font-semibold text-gray-700">{b.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* BOTTOM: More Treasures (desktop only) */}
+      {featured.length > 6 && (
+        <div className="hidden sm:block container mx-auto px-4 mt-6 pb-8">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-bold text-lg flex items-center gap-2"><TrendingUp className="w-5 h-5" /> More Treasures</h2>
+              <Link href="/listings" className="text-sm text-antique-700 hover:underline">View All →</Link>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {featured.slice(6, 12).map(l => {
+                const imgs = JSON.parse(l.images);
+                return (
+                  <Link key={l.id} href={`/listings/${l.id}`} className="group border border-gray-100 rounded-lg overflow-hidden hover:shadow-md transition">
+                    <div className="relative h-32 overflow-hidden">
+                      <img src={imgs[0]} alt={l.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                    </div>
+                    <div className="p-2">
+                      <h3 className="text-xs font-semibold line-clamp-1">{l.title}</h3>
+                      <p className="text-xs font-bold text-antique-900 mt-1">{l.price ? formatPrice(l.price) : "Auction"}</p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MOBILE CTA */}
+      <div className="sm:hidden bg-antique-900 text-white mt-4 px-4 py-6 text-center">
+        <h2 className="font-serif text-xl font-bold mb-2">Have an Antique?</h2>
+        <p className="text-xs text-antique-200 mb-4">List it free. Reach thousands of collectors.</p>
+        <Link href="/sell" className="inline-flex items-center justify-center gap-2 bg-gold-500 text-antique-950 px-5 py-3 rounded-lg font-bold text-sm w-full active:scale-95 transition">
+          <Gavel className="w-4 h-4" /> Start Selling
+        </Link>
+      </div>
+    </div>
+  );
+}

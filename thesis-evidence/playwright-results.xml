@@ -1,0 +1,222 @@
+<testsuites id="" name="" tests="95" failures="0" skipped="0" errors="0" time="247.887917">
+<testsuite name="01-auth-full.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="8" failures="0" skipped="0" time="15.638" errors="0">
+<testcase name="AUTH — Full Coverage › A1: Login page renders all elements" classname="01-auth-full.spec.ts" time="1.856">
+</testcase>
+<testcase name="AUTH — Full Coverage › A2: Admin login redirects to dashboard" classname="01-auth-full.spec.ts" time="2.215">
+</testcase>
+<testcase name="AUTH — Full Coverage › A3: Seller login works" classname="01-auth-full.spec.ts" time="2.139">
+</testcase>
+<testcase name="AUTH — Full Coverage › A4: Buyer login works" classname="01-auth-full.spec.ts" time="2.25">
+</testcase>
+<testcase name="AUTH — Full Coverage › A5: Wrong password shows error" classname="01-auth-full.spec.ts" time="1.794">
+</testcase>
+<testcase name="AUTH — Full Coverage › A6: Empty fields blocked by validation" classname="01-auth-full.spec.ts" time="1.478">
+</testcase>
+<testcase name="AUTH — Full Coverage › A7: Signup page renders" classname="01-auth-full.spec.ts" time="1.49">
+</testcase>
+<testcase name="AUTH — Full Coverage › A8: Session persists after page reload" classname="01-auth-full.spec.ts" time="2.416">
+</testcase>
+</testsuite>
+<testsuite name="02-homepage.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="6" failures="0" skipped="0" time="11.992" errors="0">
+<testcase name="HOMEPAGE — Full Coverage › H1: Homepage loads with all sections" classname="02-homepage.spec.ts" time="1.793">
+</testcase>
+<testcase name="HOMEPAGE — Full Coverage › H2: Search bar present and functional" classname="02-homepage.spec.ts" time="2.423">
+</testcase>
+<testcase name="HOMEPAGE — Full Coverage › H3: Categories sidebar present" classname="02-homepage.spec.ts" time="2.076">
+</testcase>
+<testcase name="HOMEPAGE — Full Coverage › H4: Featured antiques section" classname="02-homepage.spec.ts" time="1.884">
+</testcase>
+<testcase name="HOMEPAGE — Full Coverage › H5: Top bar shows location" classname="02-homepage.spec.ts" time="1.813">
+</testcase>
+<testcase name="HOMEPAGE — Full Coverage › H6: Footer present with contact info" classname="02-homepage.spec.ts" time="2.003">
+</testcase>
+</testsuite>
+<testsuite name="03-listings.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="8" failures="0" skipped="0" time="19.009" errors="0">
+<testcase name="LISTINGS — Full Coverage › L1: Listings page loads with cards" classname="03-listings.spec.ts" time="1.646">
+</testcase>
+<testcase name="LISTINGS — Full Coverage › L2: Filters sidebar visible" classname="03-listings.spec.ts" time="1.919">
+</testcase>
+<testcase name="LISTINGS — Full Coverage › L3: Category filter works via URL" classname="03-listings.spec.ts" time="3.058">
+</testcase>
+<testcase name="LISTINGS — Full Coverage › L4: Search filter via URL" classname="03-listings.spec.ts" time="2.442">
+</testcase>
+<testcase name="LISTINGS — Full Coverage › L5: Price range filter via URL" classname="03-listings.spec.ts" time="2.874">
+</testcase>
+<testcase name="LISTINGS — Full Coverage › L6: Click on card opens detail page" classname="03-listings.spec.ts" time="2.346">
+</testcase>
+<testcase name="LISTINGS — Full Coverage › L7: Wishlist heart buttons on cards" classname="03-listings.spec.ts" time="1.864">
+</testcase>
+<testcase name="LISTINGS — Full Coverage › L8: Clear filters link exists" classname="03-listings.spec.ts" time="2.86">
+</testcase>
+</testsuite>
+<testsuite name="04-listing-detail.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="7" failures="0" skipped="0" time="13.467" errors="0">
+<testcase name="LISTING DETAIL — Full Coverage › D1: Detail page loads with all sections" classname="04-listing-detail.spec.ts" time="1.498">
+</testcase>
+<testcase name="LISTING DETAIL — Full Coverage › D2: Image gallery displays main image" classname="04-listing-detail.spec.ts" time="1.456">
+</testcase>
+<testcase name="LISTING DETAIL — Full Coverage › D3: Description &amp; details table present" classname="04-listing-detail.spec.ts" time="1.655">
+</testcase>
+<testcase name="LISTING DETAIL — Full Coverage › D4: Wishlist button clickable" classname="04-listing-detail.spec.ts" time="4.215">
+</testcase>
+<testcase name="LISTING DETAIL — Full Coverage › D5: Add to cart button present on fixed-price listing" classname="04-listing-detail.spec.ts" time="1.487">
+</testcase>
+<testcase name="LISTING DETAIL — Full Coverage › D6: Seller name visible" classname="04-listing-detail.spec.ts" time="1.774">
+</testcase>
+<testcase name="LISTING DETAIL — Full Coverage › D7: 404 on invalid listing id" classname="04-listing-detail.spec.ts" time="1.382">
+</testcase>
+</testsuite>
+<testsuite name="05-wishlist.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="4" failures="0" skipped="0" time="11.519" errors="0">
+<testcase name="WISHLIST — Full Coverage › W1: Wishlist page loads when logged in" classname="05-wishlist.spec.ts" time="2.593">
+</testcase>
+<testcase name="WISHLIST — Full Coverage › W2: Wishlist page requires login" classname="05-wishlist.spec.ts" time="1.632">
+</testcase>
+<testcase name="WISHLIST — Full Coverage › W3: Heart button toggles on listing card" classname="05-wishlist.spec.ts" time="4.81">
+</testcase>
+<testcase name="WISHLIST — Full Coverage › W4: Wishlist empty state message" classname="05-wishlist.spec.ts" time="2.484">
+</testcase>
+</testsuite>
+<testsuite name="06-cart-checkout.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="6" failures="0" skipped="0" time="15.077" errors="0">
+<testcase name="CART &amp; CHECKOUT — Full Coverage › C1: Cart page loads (empty state)" classname="06-cart-checkout.spec.ts" time="2.516">
+</testcase>
+<testcase name="CART &amp; CHECKOUT — Full Coverage › C2: Add to cart button visible on listing" classname="06-cart-checkout.spec.ts" time="3.785">
+</testcase>
+<testcase name="CART &amp; CHECKOUT — Full Coverage › C3: Navbar cart icon present" classname="06-cart-checkout.spec.ts" time="1.929">
+</testcase>
+<testcase name="CART &amp; CHECKOUT — Full Coverage › C4: Checkout page renders payment methods" classname="06-cart-checkout.spec.ts" time="2.447">
+</testcase>
+<testcase name="CART &amp; CHECKOUT — Full Coverage › C5: Cart persists across reload" classname="06-cart-checkout.spec.ts" time="2.721">
+</testcase>
+<testcase name="CART &amp; CHECKOUT — Full Coverage › C6: Checkout requires login (protected)" classname="06-cart-checkout.spec.ts" time="1.679">
+</testcase>
+</testsuite>
+<testsuite name="07-auction-bidding.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="5" failures="0" skipped="0" time="8.908" errors="0">
+<testcase name="AUCTION BIDDING — Full Coverage › AUC1: Auctions page loads with live auctions" classname="07-auction-bidding.spec.ts" time="1.568">
+</testcase>
+<testcase name="AUCTION BIDDING — Full Coverage › AUC2: Auction card has countdown timer" classname="07-auction-bidding.spec.ts" time="1.4">
+</testcase>
+<testcase name="AUCTION BIDDING — Full Coverage › AUC3: Auction detail page has bid panel" classname="07-auction-bidding.spec.ts" time="1.885">
+</testcase>
+<testcase name="AUCTION BIDDING — Full Coverage › AUC4: Bid panel shows bid history section" classname="07-auction-bidding.spec.ts" time="1.857">
+</testcase>
+<testcase name="AUCTION BIDDING — Full Coverage › AUC5: Homepage auctions section exists" classname="07-auction-bidding.spec.ts" time="2.198">
+</testcase>
+</testsuite>
+<testsuite name="09-seller-dashboard.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="5" failures="0" skipped="0" time="15.569" errors="0">
+<testcase name="SELLER DASHBOARD — Full Coverage › S1: Seller dashboard loads with stats" classname="09-seller-dashboard.spec.ts" time="4.595">
+</testcase>
+<testcase name="SELLER DASHBOARD — Full Coverage › S2: Seller sees own listings table" classname="09-seller-dashboard.spec.ts" time="2.869">
+</testcase>
+<testcase name="SELLER DASHBOARD — Full Coverage › S3: New Listing button present" classname="09-seller-dashboard.spec.ts" time="2.83">
+</testcase>
+<testcase name="SELLER DASHBOARD — Full Coverage › S4: Sell page form renders for seller" classname="09-seller-dashboard.spec.ts" time="2.731">
+</testcase>
+<testcase name="SELLER DASHBOARD — Full Coverage › S5: Buyer gets blocked from seller dashboard" classname="09-seller-dashboard.spec.ts" time="2.544">
+</testcase>
+</testsuite>
+<testsuite name="10-admin-panel.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="8" failures="0" skipped="0" time="23.621" errors="0">
+<testcase name="ADMIN PANEL — Full Coverage › AD1: Admin dashboard shows stats" classname="10-admin-panel.spec.ts" time="2.589">
+</testcase>
+<testcase name="ADMIN PANEL — Full Coverage › AD2: Quick action cards visible" classname="10-admin-panel.spec.ts" time="2.81">
+</testcase>
+<testcase name="ADMIN PANEL — Full Coverage › AD3: Products page shows table" classname="10-admin-panel.spec.ts" time="4.06">
+</testcase>
+<testcase name="ADMIN PANEL — Full Coverage › AD4: Users page shows table" classname="10-admin-panel.spec.ts" time="2.847">
+</testcase>
+<testcase name="ADMIN PANEL — Full Coverage › AD5: Complaints page loads" classname="10-admin-panel.spec.ts" time="2.728">
+</testcase>
+<testcase name="ADMIN PANEL — Full Coverage › AD6: Non-admin blocked from admin panel" classname="10-admin-panel.spec.ts" time="2.574">
+</testcase>
+<testcase name="ADMIN PANEL — Full Coverage › AD7: Product status dropdown present" classname="10-admin-panel.spec.ts" time="3.439">
+</testcase>
+<testcase name="ADMIN PANEL — Full Coverage › AD8: User role dropdown present" classname="10-admin-panel.spec.ts" time="2.574">
+</testcase>
+</testsuite>
+<testsuite name="11-complaints.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="5" failures="0" skipped="0" time="9.618" errors="0">
+<testcase name="COMPLAINTS — Full Coverage › CM1: Contact page shows complaint form" classname="11-complaints.spec.ts" time="1.515">
+</testcase>
+<testcase name="COMPLAINTS — Full Coverage › CM2: Contact page shows all contact methods" classname="11-complaints.spec.ts" time="1.54">
+</testcase>
+<testcase name="COMPLAINTS — Full Coverage › CM3: My Complaints page requires login" classname="11-complaints.spec.ts" time="1.587">
+</testcase>
+<testcase name="COMPLAINTS — Full Coverage › CM4: My Complaints page loads when logged in" classname="11-complaints.spec.ts" time="2.478">
+</testcase>
+<testcase name="COMPLAINTS — Full Coverage › CM5: Admin complaints page shows all complaints" classname="11-complaints.spec.ts" time="2.498">
+</testcase>
+</testsuite>
+<testsuite name="12-reviews.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="4" failures="0" skipped="0" time="8.523" errors="0">
+<testcase name="REVIEWS — Full Coverage › R1: Review section on listing detail" classname="12-reviews.spec.ts" time="2.492">
+</testcase>
+<testcase name="REVIEWS — Full Coverage › R2: Star rating visible when review form shown" classname="12-reviews.spec.ts" time="3.229">
+</testcase>
+<testcase name="REVIEWS — Full Coverage › R3: Orders page has Leave Review link" classname="12-reviews.spec.ts" time="2.484">
+</testcase>
+<testcase name="REVIEWS — Full Coverage › R4: Reviews API responds" classname="12-reviews.spec.ts" time="0.318">
+</testcase>
+</testsuite>
+<testsuite name="13-public-pages.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="7" failures="0" skipped="0" time="9.925" errors="0">
+<testcase name="PUBLIC PAGES — Full Coverage › P1: About page loads" classname="13-public-pages.spec.ts" time="1.747">
+</testcase>
+<testcase name="PUBLIC PAGES — Full Coverage › P2: Contact page loads" classname="13-public-pages.spec.ts" time="1.453">
+</testcase>
+<testcase name="PUBLIC PAGES — Full Coverage › P3: Help page loads with FAQ" classname="13-public-pages.spec.ts" time="1.454">
+</testcase>
+<testcase name="PUBLIC PAGES — Full Coverage › P4: Categories page loads" classname="13-public-pages.spec.ts" time="1.494">
+</testcase>
+<testcase name="PUBLIC PAGES — Full Coverage › P5: 404 page loads for invalid route" classname="13-public-pages.spec.ts" time="1.606">
+</testcase>
+<testcase name="PUBLIC PAGES — Full Coverage › P6: Footer links navigate correctly" classname="13-public-pages.spec.ts" time="1.889">
+</testcase>
+<testcase name="PUBLIC PAGES — Full Coverage › P7: Robots.txt accessible" classname="13-public-pages.spec.ts" time="0.282">
+</testcase>
+</testsuite>
+<testsuite name="14-responsive.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="5" failures="0" skipped="0" time="9.121" errors="0">
+<testcase name="RESPONSIVE — Full Coverage › RS1: Mobile homepage loads (375x667)" classname="14-responsive.spec.ts" time="1.831">
+</testcase>
+<testcase name="RESPONSIVE — Full Coverage › RS2: Mobile menu toggle visible" classname="14-responsive.spec.ts" time="1.994">
+</testcase>
+<testcase name="RESPONSIVE — Full Coverage › RS3: Tablet viewport loads" classname="14-responsive.spec.ts" time="1.694">
+</testcase>
+<testcase name="RESPONSIVE — Full Coverage › RS4: Desktop viewport full nav visible" classname="14-responsive.spec.ts" time="1.94">
+</testcase>
+<testcase name="RESPONSIVE — Full Coverage › RS5: No horizontal overflow on mobile" classname="14-responsive.spec.ts" time="1.662">
+</testcase>
+</testsuite>
+<testsuite name="15-seo-meta.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="5" failures="0" skipped="0" time="21.593" errors="0">
+<testcase name="SEO &amp; META — Full Coverage › SEO1: Homepage title contains brand" classname="15-seo-meta.spec.ts" time="2.038">
+</testcase>
+<testcase name="SEO &amp; META — Full Coverage › SEO2: Meta description present" classname="15-seo-meta.spec.ts" time="1.89">
+</testcase>
+<testcase name="SEO &amp; META — Full Coverage › SEO3: OpenGraph tags present" classname="15-seo-meta.spec.ts" time="16.795">
+</testcase>
+<testcase name="SEO &amp; META — Full Coverage › SEO4: Sitemap.xml accessible" classname="15-seo-meta.spec.ts" time="0.525">
+</testcase>
+<testcase name="SEO &amp; META — Full Coverage › SEO5: Robots.txt accessible" classname="15-seo-meta.spec.ts" time="0.345">
+</testcase>
+</testsuite>
+<testsuite name="16-payment-deep.spec.ts" timestamp="2026-11-19T15:49:23.854Z" hostname="chromium" tests="12" failures="0" skipped="0" time="49.832" errors="0">
+<testcase name="PAYMENT &amp; ORDERS — Deep Coverage › PM1: All 6 payment methods visible on checkout" classname="16-payment-deep.spec.ts" time="6.984">
+</testcase>
+<testcase name="PAYMENT &amp; ORDERS — Deep Coverage › PM2: Escrow is default payment method" classname="16-payment-deep.spec.ts" time="2.408">
+</testcase>
+<testcase name="PAYMENT &amp; ORDERS — Deep Coverage › PM3: Cart empty → checkout shows empty message" classname="16-payment-deep.spec.ts" time="2.774">
+</testcase>
+<testcase name="PAYMENT &amp; ORDERS — Deep Coverage › PM4: Shipping address textarea present" classname="16-payment-deep.spec.ts" time="4.167">
+</testcase>
+<testcase name="PAYMENT &amp; ORDERS — Deep Coverage › PM5: Order Summary shows subtotal + escrow fee + total" classname="16-payment-deep.spec.ts" time="6.944">
+</testcase>
+<testcase name="PAYMENT &amp; ORDERS — Deep Coverage › PM6: Place Order button visible on checkout" classname="16-payment-deep.spec.ts" time="6.968">
+</testcase>
+<testcase name="PAYMENT &amp; ORDERS — Deep Coverage › PM7: Escrow protected message shown" classname="16-payment-deep.spec.ts" time="6.863">
+</testcase>
+<testcase name="PAYMENT &amp; ORDERS — Deep Coverage › PM8: Order placed via API creates DB record" classname="16-payment-deep.spec.ts" time="4.14">
+</testcase>
+<testcase name="PAYMENT &amp; ORDERS — Deep Coverage › PM9: Dashboard orders page shows order list" classname="16-payment-deep.spec.ts" time="2.484">
+</testcase>
+<testcase name="PAYMENT &amp; ORDERS — Deep Coverage › PM10: Orders API returns array of orders" classname="16-payment-deep.spec.ts" time="2.134">
+</testcase>
+<testcase name="PAYMENT &amp; ORDERS — Deep Coverage › PM11: Checkout requires login (unauthenticated)" classname="16-payment-deep.spec.ts" time="1.442">
+</testcase>
+<testcase name="PAYMENT &amp; ORDERS — Deep Coverage › PM12: Order status badges visible" classname="16-payment-deep.spec.ts" time="2.524">
+</testcase>
+</testsuite>
+</testsuites>
